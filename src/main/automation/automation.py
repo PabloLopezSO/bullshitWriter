@@ -1,11 +1,17 @@
 import logging
 from multiprocessing.sharedctypes import Value
 import os
+import sys
 import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+
+sysName:str = os.path.dirname(__file__).replace("automation", "")
+finalSysDir:str = os.path.join(sysName, 'data')
+sys.path.append(finalSysDir)
+import retrieveData
 
 dirName:str = os.path.dirname(__file__)
 finalDir:str = os.path.join(dirName, 'drivers/chrome/chromedriver.exe').replace('\\', '/')
@@ -34,54 +40,76 @@ def enterLoginCiceron():
     logging.debug("Click and Login")
 
     open(f'{finalLogDir}\\login.tmp', 'a').close()
-    
-
-test = 1
 
 
-def findDayCiceron():
-    logging.debug("Finded Driver")
-    driver.find_element(by=By.CLASS_NAME, value=f"calendarDay{test}.calendarDayWithFCT").click()
+def goToStartMonth(monthName:str):
+    actualMonth:webdriver = driver.find_element(by=By.CLASS_NAME, value="cmCalendarTitle").text
+    while actualMonth.casefold() != monthName.casefold():
+        time.sleep(0.8)
+        driver.find_element(by=By.CLASS_NAME, value="previousMonth").click()
+        actualMonth:webdriver = driver.find_element(by=By.CLASS_NAME, value="cmCalendarTitle").text
 
-def findHoursCiceron():
-    logging.debug("Finded Hours")
-    driver.find_element(by=By.ID, value="hours0").send_keys("8")
-    logging.debug("Sended 8 value")
+def goToNextMonth(monthName:str):
+    actualMonth:webdriver = driver.find_element(by=By.CLASS_NAME, value="cmCalendarTitle").text
+    while actualMonth.casefold() != monthName.casefold():
+        time.sleep(0.8)
+        driver.find_element(by=By.CLASS_NAME, value="nextMonth").click()
+        actualMonth:webdriver = driver.find_element(by=By.CLASS_NAME, value="cmCalendarTitle").text
+        
 
-def findDescriptionCiceron():
-    logging.debug("Finded Description")
-    driver.find_element(by=By.ID, value="descr0").send_keys("Description Goes Here")
-    
-def findOrientationCiceron():
-    logging.debug("Finded Orientation")
-    driver.find_element(by=By.ID, value="directions0").send_keys("Orientation Goes Here")
 
-def findDifficultiesCiceron():
-    logging.debug("Finded Difficulties")
-    driver.find_element(by=By.ID, value="difficulties0").send_keys("Difficulties Goes Here")
+def testIteration():
+    ciceronLoopSize:int = len(retrieveData.jsonExcelData())
+    incrementLoopSize:int = 0
+    goToStartMonth("MARZO DE 2022")
+    while incrementLoopSize != ciceronLoopSize:    
 
-def findObservationsCiceron():
-    logging.debug("Finded Observations")
-    driver.find_element(by=By.ID, value="comments0").send_keys("Observation Goes Here")
-    
-def findBackButton():
-    logging.debug("Finded Back Button")
-    driver.find_element(by=By.XPATH, value="/html/body/div[1]/div[2]/div/form/div/input").click()
+        ciceronMonths:str = retrieveData.jsonExcelData()[incrementLoopSize]['Month']
+        ciceronDays:str = retrieveData.jsonExcelData()[incrementLoopSize]['Day']
+        ciceronHours:str = retrieveData.jsonExcelData()[incrementLoopSize]['Hours']
+        ciceronDescription:str = retrieveData.jsonExcelData()[incrementLoopSize]['Description']
+        ciceronOrientation:str = retrieveData.jsonExcelData()[incrementLoopSize]['Orientation']
+        ciceronDifficulties:str = retrieveData.jsonExcelData()[incrementLoopSize]['Difficulties']
+        ciceronObservations:str = retrieveData.jsonExcelData()[incrementLoopSize]['Observations']
+        
+        goToNextMonth(ciceronMonths)
+
+        logging.debug("Finded Days")
+        driver.find_element(by=By.CLASS_NAME, value=f"calendarDay{ciceronDays}.calendarDayWithFCT").click()
+        logging.debug(f"Sending {ciceronDays}")
+
+        logging.debug("Finded Hours")
+        driver.find_element(by=By.ID, value="hours0").send_keys(ciceronHours)
+        logging.debug(f"Sending {ciceronHours}")
+
+        logging.debug("Finded Description")
+        driver.find_element(by=By.ID, value="descr0").send_keys(ciceronDescription)
+        logging.debug(f"Sending {ciceronDescription}")    
+
+        logging.debug("Finded Orientation")
+        driver.find_element(by=By.ID, value="directions0").send_keys(ciceronOrientation)
+        logging.debug(f"Sending {ciceronOrientation}")
+
+        logging.debug("Finded Difficulties")
+        driver.find_element(by=By.ID, value="difficulties0").send_keys(ciceronDifficulties)
+        logging.debug(f"Sending {ciceronDifficulties}")
+
+        logging.debug("Finded Observations")
+        driver.find_element(by=By.ID, value="comments0").send_keys(ciceronObservations)
+        logging.debug(f"Sending {ciceronObservations}")    
+
+        logging.debug("Finded Back Button")
+        driver.find_element(by=By.XPATH, value="/html/body/div[1]/div[2]/div/form/div/input").click()
+
+        incrementLoopSize+=1
+        logging.debug("Loop incremented by 1")
 
 def tempLoginCiceron(tempFileDir:str):
         time.sleep(sleepDeleteTempFiles)
-        filesInDirectory = os.listdir(tempFileDir)
-        filteredFiles = [file for file in filesInDirectory if file.endswith(".tmp")]
+        filesInDirectory:str = os.listdir(tempFileDir)
+        filteredFiles:list = [file for file in filesInDirectory if file.endswith(".tmp")]
         print(filesInDirectory)
         for file in filteredFiles:
-            pathFile = os.path.join(tempFileDir, file)
+            pathFile:str = os.path.join(tempFileDir, file)
             os.remove(pathFile)
-            
-def dayLooper():
-    logging.debug("Looping day")
-    if test != 3:
-        test += 1
-
-
-
-
+        driver.close()
