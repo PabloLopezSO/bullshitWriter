@@ -7,7 +7,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-
 sysName:str = os.path.dirname(__file__).replace("automation", "")
 finalSysDir:str = os.path.join(sysName, 'data')
 sys.path.append(finalSysDir)
@@ -59,6 +58,7 @@ def goToNextMonth(monthName:str):
 
 
 def testIteration():
+
     ciceronLoopSize:int = len(retrieveData.jsonExcelData())
     incrementLoopSize:int = 0
     goToStartMonth("MARZO DE 2022")
@@ -113,3 +113,4 @@ def tempLoginCiceron(tempFileDir:str):
             pathFile:str = os.path.join(tempFileDir, file)
             os.remove(pathFile)
         driver.close()
+

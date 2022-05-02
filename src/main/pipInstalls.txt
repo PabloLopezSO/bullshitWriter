@@ -2,6 +2,5 @@ pip install virtualenv
 virtualenv env
 pip install luigi
 pip install selenium
-pip install openpyxl
-pip install excel2json
+pip install pandas
 //python -m luigi --module main HelloLuigi --local-scheduler
