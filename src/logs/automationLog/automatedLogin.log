@@ -1,0 +1,41 @@
+DEBUG:Started Driver
+DEBUG:POST http://localhost:64435/session/3ff8cba2b0a2fa8472cfd53a4559c045/url {"url": "https://ciceron-fct.educa.jcyl.es/ciceron/ciceron/tkMain?locale=es_ES"}
+DEBUG:http://localhost:64435 "POST /session/3ff8cba2b0a2fa8472cfd53a4559c045/url HTTP/1.1" 200 14
+DEBUG:Finished Request
+DEBUG:Maked connection with ciceron
+DEBUG:POST http://localhost:64435/session/3ff8cba2b0a2fa8472cfd53a4559c045/element {"using": "css selector", "value": "[id=\"dvLogin\"]"}
+DEBUG:http://localhost:64435 "POST /session/3ff8cba2b0a2fa8472cfd53a4559c045/element HTTP/1.1" 200 88
+DEBUG:Finished Request
+DEBUG:POST http://localhost:64435/session/3ff8cba2b0a2fa8472cfd53a4559c045/element/dfb66000-9da6-4e46-bb2b-344c10909e58/value {"text": "PabloLopez", "value": ["P", "a", "b", "l", "o", "L", "o", "p", "e", "z"], "id": "dfb66000-9da6-4e46-bb2b-344c10909e58"}
+DEBUG:http://localhost:64435 "POST /session/3ff8cba2b0a2fa8472cfd53a4559c045/element/dfb66000-9da6-4e46-bb2b-344c10909e58/value HTTP/1.1" 200 14
+DEBUG:Finished Request
+DEBUG:Send user
+DEBUG:POST http://localhost:64435/session/3ff8cba2b0a2fa8472cfd53a4559c045/element {"using": "css selector", "value": "[id=\"dvPass\"]"}
+DEBUG:http://localhost:64435 "POST /session/3ff8cba2b0a2fa8472cfd53a4559c045/element HTTP/1.1" 200 88
+DEBUG:Finished Request
+DEBUG:POST http://localhost:64435/session/3ff8cba2b0a2fa8472cfd53a4559c045/element/4a8b5717-d3a6-4030-9a0f-99c10b08fa5d/value {"text": "Luispablo52", "value": ["L", "u", "i", "s", "p", "a", "b", "l", "o", "5", "2"], "id": "4a8b5717-d3a6-4030-9a0f-99c10b08fa5d"}
+DEBUG:http://localhost:64435 "POST /session/3ff8cba2b0a2fa8472cfd53a4559c045/element/4a8b5717-d3a6-4030-9a0f-99c10b08fa5d/value HTTP/1.1" 200 14
+DEBUG:Finished Request
+DEBUG:Send password
+DEBUG:POST http://localhost:64435/session/3ff8cba2b0a2fa8472cfd53a4559c045/element {"using": "css selector", "value": ".normal"}
+DEBUG:http://localhost:64435 "POST /session/3ff8cba2b0a2fa8472cfd53a4559c045/element HTTP/1.1" 200 88
+DEBUG:Finished Request
+DEBUG:POST http://localhost:64435/session/3ff8cba2b0a2fa8472cfd53a4559c045/element/6aa94581-2e55-4c0a-a280-98e6d55cbc4c/click {"id": "6aa94581-2e55-4c0a-a280-98e6d55cbc4c"}
+DEBUG:http://localhost:64435 "POST /session/3ff8cba2b0a2fa8472cfd53a4559c045/element/6aa94581-2e55-4c0a-a280-98e6d55cbc4c/click HTTP/1.1" 200 14
+DEBUG:Finished Request
+DEBUG:Click and Login
+INFO:[pid 15160] Worker Worker(salt=110563068, workers=1, host=DESKTOP-NCL44GA, username=Pablo, pid=15160) done      LoginEnterCiceron()
+DEBUG:1 running tasks, waiting for next task to finish
+INFO:Informed scheduler that task   LoginEnterCiceron__99914b932b   has status   DONE
+DEBUG:Asking scheduler for work...
+DEBUG:Starting pruning of task graph
+DEBUG:Done pruning task graph
+DEBUG:Pending tasks: 2
+INFO:[pid 15160] Worker Worker(salt=110563068, workers=1, host=DESKTOP-NCL44GA, username=Pablo, pid=15160) running   IterateFillFields()
+DEBUG:POST http://localhost:64435/session/3ff8cba2b0a2fa8472cfd53a4559c045/element {"using": "css selector", "value": ".cmCalendarTitle"}
+DEBUG:http://localhost:64435 "POST /session/3ff8cba2b0a2fa8472cfd53a4559c045/element HTTP/1.1" 200 88
+DEBUG:Finished Request
+DEBUG:GET http://localhost:64435/session/3ff8cba2b0a2fa8472cfd53a4559c045/element/55704ea1-30b1-4529-a92b-c828d71b6483/text {"id": "55704ea1-30b1-4529-a92b-c828d71b6483"}
+DEBUG:http://localhost:64435 "GET /session/3ff8cba2b0a2fa8472cfd53a4559c045/element/55704ea1-30b1-4529-a92b-c828d71b6483/text HTTP/1.1" 200 24
+DEBUG:Finished Request
+INFO:Worker Worker(salt=110563068, workers=1, host=DESKTOP-NCL44GA, username=Pablo, pid=15160) was stopped. Shutting down Keep-Alive thread
